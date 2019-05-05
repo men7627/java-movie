@@ -56,4 +56,5 @@ public class Movie {
         TimeAndPeople timeAndPeople = new TimeAndPeople(this.playSchedules.get(schedule-1),people);
         ReservedInfo.reservedMovieInfoMap.put(movie, timeAndPeople);
     }
+
 }

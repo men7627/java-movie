@@ -1,6 +1,7 @@
-import domain.Movie;
-import domain.MovieRepository;
-import domain.ReservedInfo;
+import domain.mainObject.Movie;
+import domain.mainObject.MovieRepository;
+import domain.utilObject.ReservedInfo;
+import domain.utilObject.ReservedMoive;
 import utils.MovieConstants;
 import view.InputView;
 import view.OutputView;
@@ -11,7 +12,8 @@ public class MovieApplication {
         public static void main(String[] args) {
                 List<Movie> movies = MovieRepository.getMovies();
                 OutputView.printMovies(movies);
-                int payOrAdd;
+
+                ReservedInfo reservedInfo = new ReservedInfo();
                 do {
                         int movieId = InputView.inputMovieId();
                         OutputView.printSelectedMovie(movieId);
@@ -19,7 +21,7 @@ public class MovieApplication {
                         int schedule = InputView.inputMovieSchedule(movieId);
 
                         int people = InputView.inputMoviePeople(movieId, schedule);
-                        ReservedInfo.addInfo(movieId, schedule, people);
+                        reservedInfo.addMovie(new ReservedMoive(movieId,schedule,people));
                 } while (InputView.inputPayOrAdd() == MovieConstants.selectAddReservation);
                 OutputView.printReservationInfo();
         }
