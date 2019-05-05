@@ -1,21 +1,27 @@
-package domain;
+package domain.utilObject;
 
-import java.sql.Time;
-import java.util.*;
+import domain.mainObject.Movie;
+import domain.mainObject.MovieRepository;
 
-public class ReservedInfo {
-        public static Map<Movie, TimeAndPeople> reservedMovieInfoMap = new HashMap<Movie, TimeAndPeople>();
+public class ReservedMoive {
+        private Movie movie = null;
+        private int scheduleNo;
+        private int people;
 
-        public static void addInfo(int movieId, int schedule, int people){
-                Movie selectedMovie = findSelectedMovie(movieId);
-                selectedMovie.makeReservedInfo(selectedMovie,schedule, people);
+        public ReservedMoive(int moiveId, int scheduleNo, int people) {
+                for (Movie movie : MovieRepository.getMovies()) {
+                        this.movie = movie.compareId(moiveId) ? movie : this.movie;
+                }
+                this.scheduleNo = scheduleNo;
+                this.people = people;
         }
 
-        private static Movie findSelectedMovie(int movieId){
-                Movie selectedMovie = null;
-                for(Movie movie : MovieRepository.getMovies()){
-                        selectedMovie = movie.compareId(movieId) ? movie : selectedMovie;
-                }
-                return selectedMovie;
+        public int getFare(){
+                return this.movie.getFare(this.people);
+        }
+
+        @Override
+        public String toString() {
+                return this.movie.toStringInfo(scheduleNo, people);
         }
 }

@@ -1,11 +1,11 @@
 package view;
 
-import domain.*;
+import domain.mainObject.Movie;
+import domain.mainObject.MovieRepository;
+import domain.utilObject.ReservedInfo;
 
 
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 
 
 public class OutputView {
@@ -24,22 +24,13 @@ public class OutputView {
                 System.out.println(selectedMovie);
         }
 
-        public static void printReservationInfo() {
+        public static void printReservedInfo(ReservedInfo reservedInfo) {
                 System.out.println("예약 내역");
-                StringBuilder sb = new StringBuilder();
-                for (Movie movie : ReservedInfo.reservedMovieInfoMap.keySet()) {
-                        sb.append(movie.toStringInfo());
-                        sb.append(oneScheduleInfo(ReservedInfo.reservedMovieInfoMap.get(movie))+"\n");
-                }
-                System.out.println(sb.toString());
+                reservedInfo.printInfo();
         }
 
-        private  static String oneScheduleInfo(TimeAndPeople timeAndPeople){
-                StringBuilder sb = new StringBuilder();
-                for(PlaySchedule playSchedule : timeAndPeople.map.keySet()){
-                        sb.append(playSchedule.toStringInfo());
-                        sb.append("예약 인원: " + timeAndPeople.map.get(playSchedule) + "명");
-                }
-                return sb.toString();
+        public static void printFinishMessage(int point,ReservedInfo reservedInfo){
+                System.out.println("\n최종 결제한 금액은 " + reservedInfo.getDiscountFare(point)+"원 입니다.");
+                System.out.println("예매를 완료했습니다.즐거운 영화 관람되세요.\n");
         }
 }

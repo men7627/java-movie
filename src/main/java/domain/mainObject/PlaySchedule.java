@@ -1,28 +1,28 @@
-package domain;
+package domain.mainObject;
 
 import java.time.LocalDateTime;
 
 import static utils.DateTimeUtils.format;
 
 public class PlaySchedule {
-    private final LocalDateTime startDateTime;
-    private int capacity;
+        private final LocalDateTime startDateTime;
+        private int capacity;
 
-    public PlaySchedule(LocalDateTime startDateTime, int capacity) {
-        this.startDateTime = startDateTime;
-        this.capacity = capacity;
-    }
+        public PlaySchedule(LocalDateTime startDateTime, int capacity) {
+                this.startDateTime = startDateTime;
+                this.capacity = capacity;
+        }
 
-    @Override
-    public String toString() {
-        return "시작시간: " + format(startDateTime) + " 예약가능인원: " + capacity + "\n";
-    }
+        @Override
+        public String toString() {
+                return "시작시간: " + format(startDateTime) + " 예약가능인원: " + capacity + "\n";
+        }
 
-    public String toStringInfo() {
-        return "시작시간: " + format(startDateTime) + "\n";
-    }
+        public String toStringInfo() {
+                return "시작시간: " + format(startDateTime) + "\n";
+        }
 
-    public boolean isValidPeople(int people){
-        return (people <= this.capacity);
-    }
+        public boolean isValidPeople(int people) {
+                return (people <= this.capacity);
+        }
 }

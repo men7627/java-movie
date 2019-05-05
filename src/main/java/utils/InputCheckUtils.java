@@ -1,9 +1,7 @@
 package utils;
 
-import domain.Movie;
-import domain.MovieRepository;
-
-import java.util.List;
+import domain.mainObject.Movie;
+import domain.mainObject.MovieRepository;
 
 public class InputCheckUtils {
         public static void checkInputReservationMoive(int input) throws Exception {
@@ -51,5 +49,16 @@ public class InputCheckUtils {
         public static void checkInputPayOrAdd(int select) throws Exception {
                 if (select != MovieConstants.selectPayment && select != MovieConstants.selectAddReservation)
                         throw new Exception("결제, 추가 입력 오류 (1또는 2입력)");
+        }
+
+
+        public static void checkInputPoint(int point) throws Exception{
+                if (point < 0)
+                        throw new Exception("음수 입력 오류");
+        }
+
+        public static void checkInputCardOrCash(int cardOrCash) throws Exception {
+                if (cardOrCash != MovieConstants.selectCard && cardOrCash != MovieConstants.selectCash)
+                        throw new Exception("신용카드,현금 결제 입력 오류 (1또는 2입력)");
         }
 }

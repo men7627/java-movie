@@ -21,8 +21,13 @@ public class MovieApplication {
                         int schedule = InputView.inputMovieSchedule(movieId);
 
                         int people = InputView.inputMoviePeople(movieId, schedule);
-                        reservedInfo.addMovie(new ReservedMoive(movieId,schedule,people));
+                        reservedInfo.addMovie(new ReservedMoive(movieId, schedule, people));
                 } while (InputView.inputPayOrAdd() == MovieConstants.selectAddReservation);
-                OutputView.printReservationInfo();
+                OutputView.printReservedInfo(reservedInfo);
+
+                int point = InputView.inputPoint();
+                int cardOrCash = InputView.inputCardOrCash();
+
+                OutputView.printFinishMessage(point,reservedInfo);
         }
 }
